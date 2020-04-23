@@ -48,12 +48,11 @@ describe("Confirmation", () => {
     const wrap = shallow(
       <Confirmation
         message={"Still want the pie?"}
-        accept={() => {}}
+        accept={() => null}
       />
     );
-    expect(wrap.html()).toContain("btn btn-primary");
-    wrap.find('[data-test="acceptBtn"]').simulate("click");
-    expect(wrap.html()).toEqual("");
+    wrap.find('.btn.btn-primary').simulate("click");
+    expect(wrap.isEmptyRender()).toEqual(true)
   });
 
   test("should hide confirmation when decline button is clicked", () => {
@@ -63,9 +62,9 @@ describe("Confirmation", () => {
         decline={() => {}}
       />
     );
-    expect(wrap.html()).toContain("btn btn-danger");
-    wrap.find('[data-test="declineBtn"]').simulate("click");
-    expect(wrap.html()).toEqual("");
+    wrap.find('.btn.btn-danger').simulate("click");
+    expect(wrap.isEmptyRender()).toEqual(true)
+
   });
 });
 

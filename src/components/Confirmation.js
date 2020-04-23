@@ -15,7 +15,7 @@ const Confirmation = ({ message, type, accept, decline }) => {
     setIsShow(false);
   };
 
-  if (!message) {
+  if (!message || !isShow) {
     return null;
   }
 
