@@ -7,16 +7,24 @@ const notificationType = {
   error: "alert alert-danger"
 };
 
-const Notification = ({ message, type }) => {
-  if (!message) {
-    return null;
+export default class Notification extends React.Component {
+  render () {
+    const { message, type, children } = this.props;
+    
+    if (!message) {
+      return null;
+    }
+  
+    return (
+      <div className={notificationType[type || "message"]}>
+        <p>{message}</p>
+        {
+          children
+          ? children
+          : null
+        }
+      </div>
+    );
   }
-
-  return (
-    <div className={notificationType[type || "message"]}>
-      <p>{message}</p>
-    </div>
-  );
+  
 };
-
-export default Notification;

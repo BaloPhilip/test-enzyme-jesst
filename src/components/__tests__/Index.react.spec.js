@@ -20,10 +20,15 @@ describe("Confirmation", () => {
   });
 
   test("Should be a composite component", () => {
-    // const wrap = shallow(
-    //   <Confirmation message={"Would you like a slice of pie?"} />
-    // );
     expect(Confirmation).toBeInstanceOf(Function)
+  });
+
+
+  test("Should type of Notification", () => {
+    const wrap = shallow(
+      <Confirmation message={"Would you like a slice of pie?"} />
+    );
+    expect(wrap.instance()).toEqual(null)
   });
 
   test("Should render a notification", () => {
