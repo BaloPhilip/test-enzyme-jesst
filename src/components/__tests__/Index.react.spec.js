@@ -33,7 +33,7 @@ describe("Confirmation", () => {
 
   test("Should render a notification", () => {
     const wrap = shallow(<Confirmation message={"Still want the pie?"} />);
-    expect(wrap.props()).not.toBeNull();
+    expect(wrap.html()).not.toBe(null);
   });
 
   test("should render accept button", () => {
