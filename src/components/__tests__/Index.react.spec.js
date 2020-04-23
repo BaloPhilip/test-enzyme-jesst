@@ -19,6 +19,13 @@ describe("Confirmation", () => {
     expect(wrap.html()).toContain(`<p>Would you like a slice of pie?</p>`);
   });
 
+  test("Should be a composite component", () => {
+    // const wrap = shallow(
+    //   <Confirmation message={"Would you like a slice of pie?"} />
+    // );
+    expect(Confirmation).toBeInstanceOf(Function)
+  });
+
   test("Should render a notification", () => {
     const wrap = shallow(<Confirmation message={"Still want the pie?"} />);
     expect(wrap.props()).not.toBeNull();
