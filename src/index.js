@@ -4,9 +4,16 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+const notificationProps = {
+  message: "Shoulhd we bake a pie?",
+  type: "message",
+  accept: () => console.log("ACCEPT"),
+  decline: () => console.log("DECLINE")
+};
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App notification={{ ...notificationProps }}/>
   </React.StrictMode>,
   document.getElementById('root')
 );
