@@ -1,27 +1,28 @@
 import React, { useState } from "react";
 import { Notification } from '.'
 
-
-const Confirmation = ({ message, type, accept, decline }) => {
-  const [isShow, setIsShow] = useState(true);
-
-  const handleClick = cb => {
-    cb();
-    setIsShow(false);
-  };
-
-  if (!message || !isShow) {
-    return null;
+export default class Confirmation extends Notification {
+  constructor(props) {
+    super(props)
+    this.state = {
+      isShow: true
+    }
   }
 
-  const renderBtnsBlock = () => {
+  handleClick = cb => {
+    cb();
+    this.setState(() => ({ isShow: false }))
+  };
+
+  renderBtnsBlock = () => {
+    const { accept, decline } = this.props;
     return (
       <React.Fragment>
         {accept && (
           <div
             data-test="acceptBtn"
             className="btn btn-primary"
-            onClick={() => handleClick(accept)}
+            onClick={() => this.handleClick(accept)}
           >
             Sure
           </div>
@@ -30,7 +31,7 @@ const Confirmation = ({ message, type, accept, decline }) => {
           <div
             data-test="declineBtn"
             className="btn btn-danger"
-            onClick={() => handleClick(decline)}
+            onClick={() => this.handleClick(decline)}
           >
             No Thanks
           </div>
@@ -39,13 +40,17 @@ const Confirmation = ({ message, type, accept, decline }) => {
     );
   }
 
-  return (
-    <Notification message={message} type={type}>
-      {renderBtnsBlock()}
-    </Notification>
-  )
+  render() {
+    const { message, type } = this.props;
 
-  
-};
+    if (!this.state.isShow) {
+      return null;
+    }
 
-export default Confirmation;
+    return (
+      <Notification message={message} type={type}>
+        {this.renderBtnsBlock()}
+      </Notification>
+    )
+  }
+}

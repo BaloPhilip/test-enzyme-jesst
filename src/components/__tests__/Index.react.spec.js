@@ -28,7 +28,7 @@ describe("Confirmation", () => {
     const wrap = shallow(
       <Confirmation message={"Would you like a slice of pie?"} />
     );
-    expect(wrap.instance()).toEqual(null)
+    expect(wrap.instance()).toBeInstanceOf(Notification)
   });
 
   test("Should render a notification", () => {
